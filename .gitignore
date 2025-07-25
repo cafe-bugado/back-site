@@ -1,6 +1,9 @@
 # Ignorar a pasta do ambiente virtual
 venv/
 
+# Ignorar o cache
+__pycache__/
+
 # Ignorar o arquivo do banco de dados
 instance/
 site.db
