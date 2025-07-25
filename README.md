@@ -1,55 +1,58 @@
-API do Café Bugado
+# API do Café Bugado
+
 Esta é a API backend desenvolvida para o projeto "Café Bugado". Ela gerencia usuários, depoimentos e dados de um dashboard, oferecendo endpoints seguros para autenticação e manipulação de recursos.
 
-Tecnologias
-Python: Linguagem de programação principal.
+---
 
-Flask: Framework web para construir a API.
+## Tecnologias
 
-Flask-SQLAlchemy: Ferramenta para interagir com o banco de dados.
+- **Python:** Linguagem de programação principal.
+- **Flask:** Framework web para construir a API.
+- **Flask-SQLAlchemy:** Ferramenta para interagir com o banco de dados.
+- **Flask-JWT-Extended:** Para autenticação e geração de tokens de acesso.
+- **Werkzeug:** Para criptografia de senhas.
+- **SQLite:** Banco de dados simples para desenvolvimento.
 
-Flask-JWT-Extended: Para autenticação e geração de tokens de acesso.
+---
 
-Werkzeug: Para criptografia de senhas.
+## Instalação e Configuração
 
-SQLite: Banco de dados simples para desenvolvimento.
-
-Instalação e Configuração
 Siga estes passos para configurar e rodar o projeto localmente:
 
-Clone o repositório:
+1.  Clone o repositório:
+    ```bash
+    git clone https://github.com/seu-usuario/seu-repositorio.git
+    cd seu-repositorio
+    ```
 
-Bash
+2.  Crie e ative o ambiente virtual:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate
+    ```
+    *(No Windows, use `venv\Scripts\activate`)*
 
-git clone https://github.com/seu-usuario/seu-repositorio.git
-cd seu-repositorio
-Crie e ative o ambiente virtual:
+3.  Instale as dependências:
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Bash
+4.  Inicialize o banco de dados:
+    ```bash
+    # (Se necessário, dependendo da sua configuração)
+    flask shell
+    >>> from app import db
+    >>> db.create_all()
+    >>> exit()
+    ```
 
-python -m venv venv
-source venv/bin/activate
-(No Windows, use venv\Scripts\activate)
+---
 
-Instale as dependências:
+## Como Rodar a API
 
-Bash
-
-pip install -r requirements.txt
-Inicialize o banco de dados:
-
-Bash
-
-# (Se necessário, dependendo da sua configuração)
-flask shell
->>> from app import db
->>> db.create_all()
->>> exit()
-Como Rodar a API
 No mesmo terminal, com o ambiente virtual ativado, inicie o servidor:
 
-Bash
-
+```bash
 python app.py
 A API estará disponível em http://127.0.0.1:5000.
 
@@ -87,3 +90,5 @@ JSON
 {
   "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+
+Depois de salvar o arquivo `README.md` com este conteúdo, use `git add README.md`, `git commit` e `git push` para que a versão formatada apareça no seu repositório.
