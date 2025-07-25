@@ -2,7 +2,7 @@
 venv/
 
 # Ignorar o arquivo do banco de dados
-instance
+instance/
 site.db
 
 # Ignorar arquivos temporários e de cache do Python
