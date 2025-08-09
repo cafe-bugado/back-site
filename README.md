@@ -8,7 +8,10 @@ Esta é a API backend para o projeto **Café Bugado**. Ela foi desenvolvida com 
 - Flask-RESTX
 - Flask-JWT-Extended
 - Flask-SQLAlchemy
+- Secrets
+- Werkzeug.security
 - SQLite
+- Datetime
 
 ## Requisitos
 
