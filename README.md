@@ -1,26 +1,104 @@
 # API do Café Bugado
 
-Este é o backend da API do projeto "Café Bugado". Ele fornece todos os endpoints necessários para gerenciar usuários, depoimentos e dados do dashboard, garantindo a integração completa com o front-end.
+Esta é a API backend para o projeto **Café Bugado**. Ela foi desenvolvida com [Flask](https://flask.palletsprojects.com/) e fornece endpoints para autenticação, gerenciamento de usuários, depoimentos e estatísticas do dashboard.
 
-## Funcionalidades da API
+## Tecnologias Utilizadas
 
-* **Autenticação:** Registro e login de usuários via JWT.
-* **Gerenciamento de Usuários:** Rotas para listar, criar, buscar, atualizar e excluir perfis de usuários.
-* **Gerenciamento de Depoimentos:** Rotas para listar, adicionar, buscar, atualizar e excluir depoimentos.
-* **Dashboard:** Endpoint para obter estatísticas resumidas do site (total de usuários e depoimentos).
+- Flask 3.1
+- Flask-RESTX
+- Flask-JWT-Extended
+- Flask-SQLAlchemy
+- SQLite
 
-## Documentação Interativa da API (Swagger/OpenAPI)
+## Requisitos
 
-**Para acessar a documentação, inicie o servidor e acesse a URL:**
+- Python 3.12 ou superior
+- `pip` para instalar as dependências
 
-[http://127.0.0.1:5000/](http://127.0.0.1:5000/)
-
-## Configuração e Instalação
-
-Siga os passos abaixo para configurar o projeto localmente.
-
-### 1. Clonar o Repositório
+## Instalação
 
 ```bash
-git clone [https://github.com/cafe-bugado/back-site.git](https://github.com/cafe-bugado/back-site.git)
+git clone https://github.com/cafe-bugado/back-site.git
 cd back-site
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Inicializar o banco de dados
+
+O projeto usa SQLite por padrão. Para criar o arquivo `site.db` com as tabelas necessárias, execute:
+
+```python
+from app import app, db
+with app.app_context():
+    db.create_all()
+```
+
+### Executar o servidor
+
+```bash
+python app.py
+```
+
+O servidor estará disponível em `http://127.0.0.1:5000/`.
+
+### Documentação interativa
+
+Com o servidor em execução, acesse `http://127.0.0.1:5000/` para visualizar a documentação gerada automaticamente pelo Swagger (Flask‑RESTX).
+
+## Endpoints
+
+Todos os endpoints abaixo, exceto os de autenticação, exigem um token JWT no cabeçalho `Authorization: Bearer <token>`.
+
+### Autenticação
+
+| Método | Rota            | Descrição                        |
+| ------ | --------------- | -------------------------------- |
+| POST   | `/auth/register`| Registra um novo usuário         |
+| POST   | `/auth/login`   | Autentica e retorna um token JWT |
+
+### Usuários
+
+| Método | Rota                 | Descrição                     |
+| ------ | -------------------- | ----------------------------- |
+| GET    | `/usuarios/`         | Lista todos os usuários       |
+| GET    | `/usuarios/<id>`     | Busca usuário por ID          |
+| PUT    | `/usuarios/<id>`     | Atualiza usuário existente    |
+| DELETE | `/usuarios/<id>`     | Remove usuário                |
+
+### Depoimentos
+
+| Método | Rota                      | Descrição                         |
+| ------ | ------------------------- | --------------------------------- |
+| GET    | `/depoimentos/`           | Lista depoimentos                 |
+| POST   | `/depoimentos/`           | Cria novo depoimento              |
+| GET    | `/depoimentos/<id>`       | Busca depoimento por ID           |
+| PUT    | `/depoimentos/<id>`       | Atualiza depoimento               |
+| DELETE | `/depoimentos/<id>`       | Remove depoimento                 |
+
+### Dashboard
+
+| Método | Rota                | Descrição                                         |
+| ------ | ------------------- | ------------------------------------------------- |
+| GET    | `/dashboard/stats`  | Retorna contagens de usuários e depoimentos       |
+
+## Estrutura do Projeto
+
+```
+back-site/
+├── app.py            # Código principal da API
+├── requirements.txt  # Dependências do projeto
+└── README.md
+```
+
+## Testes
+
+Atualmente não há testes automatizados. Para verificar se o ambiente está configurado corretamente, execute:
+
+```bash
+pytest
+```
+
+O comando deve ser executado sem erros mesmo sem testes definidos.
+
