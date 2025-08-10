@@ -5,11 +5,12 @@ from flask_jwt_extended import JWTManager, create_access_token, jwt_required, ge
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_restx import Api, Resource, fields
 import secrets
+import os
 
 app = Flask(__name__)
 
 # CONFIGURAÇÕES
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", 'sqlite:///site.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["JWT_SECRET_KEY"] = secrets.token_hex(32)
 
@@ -312,6 +313,3 @@ class GetStats(Resource):
             "total_depoimentos": total_depoimentos
         }
         return stats, 200
-
-if __name__ == "__main__":
-    app.run(debug=True)
