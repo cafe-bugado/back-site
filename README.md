@@ -10,7 +10,7 @@ Esta é a API backend para o projeto **Café Bugado**. Ela foi desenvolvida com 
 - Flask-SQLAlchemy
 - Secrets
 - Werkzeug.security
-- SQLite
+- PostgreSQL
 - Datetime
 
 ## Requisitos
