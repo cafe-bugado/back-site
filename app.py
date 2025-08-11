@@ -140,7 +140,7 @@ class Register(Resource):
             if usuario_existente:
                 return {"message": "Este E-mail já está registrado"}, 409
             
-            hashed_password = generate_password_hash(password, method='sha256')
+            hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
             
             novo_usuario = Usuario(
                 email=email,
