@@ -175,7 +175,7 @@ class Login(Resource):
             
             busca_usuario = Usuario.query.filter_by(email=email).first()
             if busca_usuario and check_password_hash(busca_usuario.password_hash, password):
-                access_token = create_access_token(identity=busca_usuario.id)
+                access_token = create_access_token(identity=str(busca_usuario.id))
                 return {'access_token': access_token}, 200
             else:
                 return {"message": "E-mail ou senha inválidos"}, 401
