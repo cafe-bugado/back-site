@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, timezone
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_restx import Api, Resource, fields
@@ -102,7 +102,7 @@ class Depoimento(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome_autor = db.Column(db.String(100), nullable=False)
     texto = db.Column(db.Text, nullable=False)
-    data_criacao = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    data_criacao = db.Column(db.DateTime(timezone=True), nullable=False, default=datetime.now(timezone.utc))
 
     def __repr__(self):
         return f"Depoimento('{self.nome_autor}', '{self.data_criacao}')"
